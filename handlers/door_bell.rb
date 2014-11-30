@@ -18,7 +18,7 @@ class DoorBell < Sinatra::Base
 
   doorwatch = lambda do
     `doorwatch #{params[:words]}` if params
-	^^^Need to verify parameters
+#	^^^Need to verify parameters
   end
 
   get '/doorwatch', &doorwatch

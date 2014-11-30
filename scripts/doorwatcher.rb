@@ -17,7 +17,7 @@ _door_watch() {
   words="$(echo "$@" | sed 's/ /\+/g')"
   curl -sG --data-urlencode "token=$token" \
            --data-urlencode "words=$words" "${url}/doorwatch"
-	^^^^May need significant rework
+#	^^^^May need significant rework
 }
 
 # Print out usage info
