@@ -32,10 +32,12 @@ _door_watch() {
 
   #Send a test message
   Mail.deliver do
-	to 'tyler.shipp@uky.edu'
+	to 'mtshro2@gmail.com, tyler.shipp@uky.edu'
       from 'cirrusmioat@gmail.com'
    subject 'testing sendmail'
       body 'testing sendmail'
+    #Will this read the .gif from curl -data?
+    attachments['testgif.gif'] = File.read(token)
   end
 
 
