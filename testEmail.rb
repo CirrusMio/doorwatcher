@@ -16,8 +16,9 @@ end
 
   #Send a test message
 Mail.deliver do
-      to 'tyler.shipp@uky.edu'
+      to 'mtshro2@gmail.com, tyler.shipp@uky.edu'
     from 'cirrusmioat@gmail.com'
  subject 'testing sendmail'
     body 'testing sendmail'
+  attachments['testattach.txt'] = File.read('testattach.txt')
 end
