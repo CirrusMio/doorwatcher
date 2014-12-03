@@ -14,9 +14,34 @@ _door_token() {
 _door_watch() {
   token="$(__door_fetch "token")"
   [ ! "$token" ] && _door_error "Please set your token in your .ains file."
-  words="$(echo "$@" | sed 's/ /\+/g')"
-  curl -sG --data-urlencode "token=$token" \
-           --data-urlencode "words=$words" "${url}/doorwatch"
+  #words="$(echo "$@" | sed 's/ /\+/g')"
+
+  #Configure options for gmail
+  options = { :address              => "smtp.gmail.com",
+              :port                 => 587,
+              :domain               => 'gmail.com',
+              :user_name            => 'cirrusmioat',
+              :password             => 'soserious',
+              :authentication       => 'plain',
+              :enable_starttls_auto => true  }
+
+  #Apply options
+  Mail.defaults do
+    delivery_method :smtp, options
+  end
+
+  #Send a test message
+  Mail.deliver do
+	to 'tyler.shipp@uky.edu'
+      from 'cirrusmioat@gmail.com'
+   subject 'testing sendmail'
+      body 'testing sendmail'
+  end
+
+
+  #curl -sG --data-urlencode "token=$token" \
+  #         --data-urlencode "words=$words" "${url}/doorwatch"
+
 #	^^^^May need significant rework
 }
 
@@ -44,7 +69,7 @@ door_config="$HOME/.door"
 action="$1"
 case "$action" in
   token) _door_token;;
-  say) _door_say;;
+  watch) _door_watch;;
   h) _door_usage;;
   *) _door_usage;;
 esac

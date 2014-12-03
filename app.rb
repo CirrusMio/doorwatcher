@@ -3,6 +3,7 @@ require 'yaml'
 require 'ipaddr'
 require 'active_support/all'
 require 'haml'
+require 'mail'
 
 class DoorWatcher < Sinatra::Base
   # include modules
