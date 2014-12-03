@@ -2,9 +2,12 @@
 #TBD
 #https://gist.github.com/grough/1988486
 #http://rubygems.org/gems/rmagick
+#Installing rmagick gem in Ubuntu:
+#sudo aptitude Install Imagemagick and GraphicsMagick(If not aptitude go & install in s/w center) 
+#sudo aptitude Install libmagickcore-dev libmagickwand-dev gem install rmagick -v 2.13.1
 
 require "rubygems"
-require "rmagick"
+require "rmagick-2.13.1"
 include Magick
  
 frames = 100
