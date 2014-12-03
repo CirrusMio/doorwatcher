@@ -53,3 +53,4 @@ DEPENDENCIES
   rake (~> 10.2.2)
   sinatra (~> 1.4.4)
   thin (~> 1.6.2)
+  mail (~> 2.5.4)
