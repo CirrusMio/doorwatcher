@@ -10,14 +10,20 @@ require "rubygems"
 require "rmagick"
 include Magick
  
-frames = 100
+frames = 50
    gif = ImageList.new
+   
  
+#frames.times do |i|
+#  colour = "#"; 3.times {
+#    colour << "%02X" % (rand * 256)
+#  }
+#  gif << Image.new(130,50).color_fill_to_border(1, 1, colour)
 frames.times do |i|
-  colour = "#"; 3.times {
-    colour << "%02X" % (rand * 256)
-  }
-  gif << Image.new(130,50).color_fill_to_border(1, 1, colour)
+#  gif << Image.new("/tempImages/image#{i}.png")
+  gif.concat(ImageList.new("tempImages/image#{i}.png"))
 end
- 
-gif.write("00-#{frames}-colours.gif")
+
+gif.delay = 20
+gif.ticks_per_second = 50 
+gif.write("DOORCAPTURE.gif")

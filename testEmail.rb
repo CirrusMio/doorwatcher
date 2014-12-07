@@ -20,5 +20,5 @@ Mail.deliver do
     from 'cirrusmioat@gmail.com'
  subject 'testing sendmail'
     body 'testing sendmail'
-  attachments['image.png'] = File.read('image.png')
+  attachments['TestGif.gif'] = File.read('DOORCAPTURE.gif')
 end
