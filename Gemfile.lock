@@ -21,12 +21,18 @@ GEM
     haml (4.0.5)
       tilt
     i18n (0.6.9)
+    mail (2.5.4)
+      mime-types (~> 1.16)
+      treetop (~> 1.4.8)
+    mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.9.0)
+    polyglot (0.3.5)
     rack (1.5.2)
     rack-protection (1.5.2)
       rack
     rake (10.2.2)
+    rmagick (2.13.4)
     sinatra (1.4.4)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -39,6 +45,9 @@ GEM
     thread_safe (0.2.0)
       atomic (>= 1.1.7, < 2)
     tilt (1.4.1)
+    treetop (1.4.15)
+      polyglot
+      polyglot (>= 0.3.1)
     tzinfo (0.3.39)
 
 PLATFORMS
@@ -50,9 +59,8 @@ DEPENDENCIES
   foreman-export-initscript (~> 0.0.1)
   haml (~> 4.0.5)
   i18n (~> 0.6.9)
+  mail (~> 2.5.4)
   rake (~> 10.2.2)
+  rmagick (~> 2.13.4)
   sinatra (~> 1.4.4)
   thin (~> 1.6.2)
-  mail (~> 2.5.4)
-  rmagick (~> 2.13.4)
-  open-uri (~> 2.1.2)

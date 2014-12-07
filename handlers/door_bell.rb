@@ -21,6 +21,6 @@ class DoorBell < Sinatra::Base
 #	^^^Need to verify parameters
   end
 
-  get '/doorwatch', &doorwatch
-  post '/doorwatch', &doorwatch
+  get '/doorwatch' , &doorwatch
+  post '/doorwatch' , &doorwatch
 end
