@@ -1,4 +1,4 @@
-#!/bin/bash
+
 require 'mail'
 require "rubygems"
 require 'open-uri'
