@@ -56,7 +56,7 @@ end
 
 #Send a test message
 Mail.deliver do
-      to 'mtshro2@gmail.com, tyler.shipp@uky.edu'
+      to 'mtshro2@gmail.com, tyler.shipp@uky.edu, mcortt@gmail.com'
     from 'cirrusmioat@gmail.com'
  subject 'DoorWatcher'
     body 'Capture from DoorWatcher'
