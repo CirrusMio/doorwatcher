@@ -1,5 +1,3 @@
-#!/bin/bash
-
 #Door webcam capture
 
 for i in 0..49
