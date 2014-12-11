@@ -1,5 +1,5 @@
 require_relative '../lib/authentication.rb'
-class DoorOpen < Sinatra::Base
+class DoorAction < Sinatra::Base
   include Authentication
 
   configure do
