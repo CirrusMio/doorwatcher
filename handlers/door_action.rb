@@ -1,3 +1,8 @@
+require 'mail'
+require "rubygems"
+require 'open-uri'
+require "rmagick"
+include Magick
 require_relative '../lib/authentication.rb'
 class DoorAction < Sinatra::Base
   include Authentication
@@ -14,6 +19,8 @@ class DoorAction < Sinatra::Base
     `say who`
     "I just said who but you can't hear me cause you're on a VM! \n"
   end
+  
+  #capture method
   capture = lambda do
     for i in 0..49
 	   open("tempImages/image#{i}.png", 'wb') do |file|
