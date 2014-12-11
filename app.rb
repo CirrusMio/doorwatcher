@@ -38,6 +38,13 @@ class DoorWatcher < Sinatra::Base
     haml :status
   end
 
+  post '/door' do
+    # parse json message to figure out which door
+    # call `process_entry` method
+    #   call `capture` method
+    #   call `process_to_gif`
+    #   call `send_notification`
+  end
 
   # Return a key if the incoming request is from an internal network
   # Save the key to the whitelist
