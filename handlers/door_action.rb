@@ -2,25 +2,17 @@ require_relative '../lib/authentication.rb'
 class DoorAction < Sinatra::Base
   include Authentication
 
-  configure do
-    enable :logging
-    file = File.new(File.expand_path('log/doorwatcher.log'), 'a+')
-    file.sync = true
-    use Rack::CommonLogger, file
-  end
-
-  before '/doorwatch/*' do
+  before '/dooropen/*' do
     if authenticate(params[:token])
     else
       halt 403, haml('Access Denied')
     end
   end
 
-  doorwatch = lambda do
-    `doorwatch #{params[:words]}` if params
-#	^^^Need to verify parameters
+  dooropen = lambda do
+    `say who`
   end
 
-  get '/doorwatch' , &doorwatch
-  post '/doorwatch' , &doorwatch
+  get '/dooropen' , &dooropen
+  post '/dooropen' , &dooropen
 end
