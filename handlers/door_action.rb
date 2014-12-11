@@ -11,6 +11,7 @@ class DoorAction < Sinatra::Base
 
   dooropen = lambda do
     `say who`
+    "I just said who but you can't hear me cause you're on a VM! \n"
   end
 
   get '/dooropen' , &dooropen
