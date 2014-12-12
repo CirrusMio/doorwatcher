@@ -1,51 +1,59 @@
+#requirements
 require 'mail'
 require "rubygems"
 require 'open-uri'
 require "rmagick"
 include Magick
 require_relative '../lib/authentication.rb'
+
+# DoorAction class. Sinatra base class that handles all actions once the door 
+# is opened/doorbell is rang. 
+# Methods: capture, gifify, sendit
 class DoorAction < Sinatra::Base
   include Authentication
-
-  before '/dooropen/*' do
+  
+  #Authentication
+  before '/door/*' do
     if authenticate(params[:token])
     else
       halt 403, haml('Access Denied')
     end
   end
 
-  #dooropen method
+  #simple call for testing curls
   dooropen = lambda do
-    `say who`
-    "I just said who but you can't hear me cause you're on a VM! \n"
+    "You just did something, didn't you? \n"
   end
   
   #capture method
-  capture = lambda do
+  #Captures 50 frames from an IP camera. 5 frames per second for a 10s gif
+  def capture
     for i in 0..49
 	   open("tempImages/image#{i}.png", 'wb') do |file|
 	   file << open('http://hq.cirrusmio.com:82/media/?action=snapshot', http_basic_authentication: ["admin", "admin"]).read
 	   sleep(0.2)
-	   print "Saving image#{i}.png \n"
 	end
+    end
   end
 
   #gifify method
-  gifify = lambda do
+  #Uses Imagemagick to compile a gif from the image files in 
+  #the tempImage directory 
+  def gifify
 	frames = 50
-       gif = ImageList.new
+        gif = ImageList.new
 	frames.times do |i|
 	   gif.concat(ImageList.new("tempImages/image#{i}.png"))
-	   "Adding frame: image#{i}.png \n"
 	end
 	gif.delay = 20
 	gif.ticks_per_second = 50 
-	"Writing DOORCAPTURE.gif\n"
 	gif.write("DOORCAPTURE.gif")
   end
   
   #sendit method
-  sendit = lambda do
+  #Uses Ruby Mail gem to send an email to pre-set users with 
+  #the gif file attached.
+  def sendit
     #Email script
     options = { :address              => "smtp.gmail.com",
                 :port                 => 587,
@@ -60,7 +68,7 @@ class DoorAction < Sinatra::Base
     delivery_method :smtp, options
     end
 
-    #Send a the email with .gif attached
+    #Send the email with .gif attached
     Mail.deliver do
           to 'mtshro2@gmail.com, tyler.shipp@uky.edu, mcortt@gmail.com'
         from 'cirrusmioat@gmail.com'
@@ -68,22 +76,52 @@ class DoorAction < Sinatra::Base
         body 'Capture from DoorWatcher'
     attachments['DOORCAPTURE.gif'] = File.read('DOORCAPTURE.gif')
 	
-	"Email sent"
+    end
   end
   
+  #Lambdas for capture, gifify, and sendit 
+  #so as not to duplicate code for both GET and POST methods 
+  capturing = lambda do
+    capture
+    "Capturing images from camera... Please wait \n"
+  end
+
+  gififying = lambda do
+    gifify
+    "Gififying..."
+  end 
+
+  sending = lambda do
+    sendit
+    "Email sent!"
+  end
+
+  #GETs and POSTs for all methods
   get '/dooropen' , &dooropen
   post '/dooropen' , &dooropen
   
-  get '/capture' , &capture
-  post '/capture' , &capture
   
-  get '/gifify' , &gifify
-  get '/gifify' , &gifify
+  get '/capture' , &capturing
+  post '/capture' , &capturing
+ 
+  get '/gifify' , &gififying
+  post '/gifify' , &gififying
   
-  get '/sendit' , &sendit
-  get '/sendit' , &sendit
+  get '/sendit' , &sending
+  post '/sendit', &sending
   
-  get '/demo' , &capture &gifify &sendit
-  post '/demo' , &capture &gifify &sendit
-  
+  #GET/POST /door calls all methods in sequence. This is the primary means
+  #requesting a gif capture
+  get '/door' do 
+    capture
+    gifify
+    sendit
+    "Someone was at the door. .gif captured and sent\n"
+  end
+  post '/door' do
+    capture
+    gifify
+    sendit
+    "Someone was at the door. .gif captured and sent\n"
+  end  
 end
