@@ -19,11 +19,6 @@ class DoorAction < Sinatra::Base
       halt 403, haml('Access Denied')
     end
   end
-
-  #simple call for testing curls
-  dooropen = lambda do
-    "You just did something, didn't you? \n"
-  end
   
   #capture method
   #Captures 50 frames from an IP camera. 5 frames per second for a 10s gif
