@@ -1,1 +1,1 @@
-web: bundle exec thin -p 4567 -R config.ru start
+web: bundle exec thin -p 4565 -R config.ru start
