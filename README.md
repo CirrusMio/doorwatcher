@@ -69,8 +69,8 @@ Bundle gems:
 ## How to Use
 Once you have everything installed, there are two things you want to configure or at least take note of 
 inside handlers/door_action.
-       1. Edit line 22 to contain the URL of your still frame captures from your camera.
-       2. Line 53-59 for email input and 67-72 for email output.
+1. Edit line 22 to contain the URL of your still frame captures from your camera.
+2. Line 53-59 for email input and 67-72 for email output.
        
 
 ## Explanation of Process
