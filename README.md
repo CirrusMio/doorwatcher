@@ -58,7 +58,7 @@ Install bundler:
 
 `sudo gem install bundler`
 
-Clone Proximity Poll:
+Clone DoorWatcher:
 
 `git clone https://github.com/CirrusMio/doorwatcher.git`
 
@@ -67,9 +67,12 @@ Bundle gems:
 `cd /path/to/doorwatcher && sudo bundle install`
        
 ## How to Use
+
 Once you have everything installed, there are two things you want to configure or at least take note of 
 inside handlers/door_action.
+
 1. Edit line 22 to contain the URL of your still frame captures from your camera.
+
 2. Line 53-59 for email input and 67-72 for email output.
        
 
