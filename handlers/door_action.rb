@@ -91,19 +91,15 @@ class DoorAction < Sinatra::Base
     "Email sent!"
   end
 
-  #GETs and POSTs for all methods
-  get '/dooropen' , &dooropen
-  post '/dooropen' , &dooropen
-  
-  
-  get '/capture' , &capturing
-  post '/capture' , &capturing
- 
-  get '/gifify' , &gififying
-  post '/gifify' , &gififying
-  
-  get '/sendit' , &sending
-  post '/sendit', &sending
+  #GETs and POSTs for all methods DEPRACATED
+  #get '/dooropen' , &dooropen
+  #post '/dooropen' , &dooropen
+  #get '/capture' , &capturing
+  #post '/capture' , &capturing
+  #get '/gifify' , &gififying
+  #post '/gifify' , &gififying
+  #get '/sendit' , &sending
+  #post '/sendit', &sending
   
   #GET/POST /door calls all methods in sequence. This is the primary means
   #requesting a gif capture
